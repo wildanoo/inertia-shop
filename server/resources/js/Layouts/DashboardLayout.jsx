@@ -1,13 +1,25 @@
 import MenuLink from "@/Components/atoms/MenuLink";
-import { Link, router } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import {
     HiOutlineArchiveBox,
     HiOutlineHome,
     HiOutlineUsers,
 } from "react-icons/hi2";
 import { BsCardImage } from "react-icons/bs";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function DashboardLayout({ children }) {
+    const { flash } = usePage().props;
+
+    useEffect(() => {
+        if (flash.success) {
+            toast.success(flash.success);
+        }
+        if (flash.error) {
+            toast.error(flash.error);
+        }
+    }, [flash]);
     return (
         <div className="w-full overflow-x-hidden">
             <header className="navbar bg-base-100 fixed top-0 left-0 w-full shadow z-50">
