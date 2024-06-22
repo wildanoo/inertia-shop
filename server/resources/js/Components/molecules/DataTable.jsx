@@ -138,7 +138,7 @@ export default function DataTable({
             </div>
             <div className="flex justify-end">
                 <div className="join join-primary">
-                    {pagination.links.map((link, index) => {
+                    {pagination?.links.map((link, index) => {
                         return (
                             <Link
                                 href={link.url}
