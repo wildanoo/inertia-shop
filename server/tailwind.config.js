@@ -21,9 +21,9 @@ export default {
         themes: [
             {
                 mytheme: {
-                    primary: "#2563eb",
+                    primary: "#000000",
 
-                    "primary-content": "#f3f4f6",
+                    "primary-content": "#fff",
 
                     secondary: "#f3f4f6",
 

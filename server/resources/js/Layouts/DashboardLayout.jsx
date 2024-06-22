@@ -51,7 +51,7 @@ export default function DashboardLayout({ children }) {
                     </div>
                 </div>
             </header>
-            <aside className="bg-primary w-56 fixed top-0 left-0 w-[250px] h-full z-[60]">
+            <aside className="bg-gray-900 w-56 fixed top-0 left-0 w-[250px] h-full z-[60]">
                 <div className="p-6">
                     <a className="navbar-brand font-bold text-white">DaisyUI</a>
                 </div>
