@@ -16,7 +16,7 @@ export default function FormSelect({
                     value={value}
                     onBlur={onBlur}
                     onChange={onChange}
-                    className="select select-bordered"
+                    className="select select-bordered text-base"
                 >
                     {options.map((option) => (
                         <option key={option.value} value={option.value}>

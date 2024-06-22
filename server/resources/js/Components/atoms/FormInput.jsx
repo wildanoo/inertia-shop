@@ -8,6 +8,7 @@ export default function FormInput({
     type = "text",
     rows = 3,
     disabled = false,
+    size = "normal",
 }) {
     return (
         <div>
@@ -22,7 +23,11 @@ export default function FormInput({
                         rows={rows}
                         disabled={disabled}
                         onChange={onChange}
-                        className="textarea textarea-bordered w-full"
+                        className={[
+                            "textarea textarea-bordered text-base w-full",
+                            size === "small" ? "textarea-sm" : "",
+                            size === "large" ? "textarea-lg" : "",
+                        ].join(" ")}
                     >
                         {value}
                     </textarea>
@@ -35,7 +40,11 @@ export default function FormInput({
                         disabled={disabled}
                         onBlur={onBlur}
                         onChange={onChange}
-                        className="input input-bordered w-full"
+                        className={[
+                            "input input-bordered w-full",
+                            size === "small" ? "input-sm" : "",
+                            size === "large" ? "input-lg" : "",
+                        ].join(" ")}
                     />
                 ) : (
                     <input
@@ -45,7 +54,11 @@ export default function FormInput({
                         disabled={disabled}
                         onBlur={onBlur}
                         onChange={onChange}
-                        className="input input-bordered w-full"
+                        className={[
+                            "input input-bordered w-full ",
+                            size === "small" ? "input-sm" : "",
+                            size === "large" ? "input-lg" : "",
+                        ].join(" ")}
                     />
                 )}
             </label>
