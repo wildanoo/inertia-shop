@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        $superAdmin = Role::create(['name' => 'super_admin']);
+        $superAdmin = Role::create(['name' => 'super_admin', 'display_name' => "Super Admin"]);
         $user = User::create([
             'name' => 'Super Admin',
             'email' => 'super_admin@inertiashop.dev',
