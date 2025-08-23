@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+public/build/
+storage/
+
+# Laravel specific
+bootstrap/cache/
+storage/logs/
+storage/framework/
+
+# Database
+database/migrations/*.php
+
+# Config files
+composer.json
+composer.lock
+package-lock.json
+
+# Other
+.git/
+.gitignore
+README.md
+*.log
+*.sql
+*.sqlite
