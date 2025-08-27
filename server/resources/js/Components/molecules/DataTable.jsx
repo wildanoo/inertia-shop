@@ -1,6 +1,6 @@
 import { getQueryParam } from "@/utils";
 import { Link } from "@inertiajs/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { BiSortAlt2 } from "react-icons/bi";
 
 export default function DataTable({
