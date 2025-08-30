@@ -7,7 +7,6 @@ import { HiTrash } from "react-icons/hi2";
 
 export default function Index({ media }) {
   const { data, ...pagination } = media;
-  console.log(data);
   const handleDelete = (id) => {
     const confirmed = confirm("Are you sure you want to delete this media?");
     if (!confirmed) return;

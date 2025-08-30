@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\API\RajaongkirController;
 use App\Http\Controllers\Controller;
+use App\Models\Province;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,6 +60,8 @@ class UserCrudController extends Controller
 
         $user->syncRoles($request->roles);
 
+        $user->detail()->create();
+
         session()->flash('success', 'User has been created successfully');
         return redirect()->route('dashboard.users.index');
     }
@@ -67,7 +71,9 @@ class UserCrudController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::with('detail')->find($id);
+
+        return Inertia::render('Admin/Users/Show', ['user' => $user]);
     }
 
     /**
@@ -126,5 +132,46 @@ class UserCrudController extends Controller
 
         session()->flash('success', 'User has been deleted successfully');
         return redirect(route('dashboard.users.index'));
+    }
+
+    public function updateDetail(Request $request, string $id)
+    {
+        $request->validate([
+            'profile_picture' => 'url',
+            'billing_name' => 'max:100',
+            'billing_phone' => 'numeric|digits_between:10,15',
+            'billing_email' => 'max:100|email',
+            'billing_address' => 'max:255',
+            'billing_province_id' => 'required|exists:provinces,id',
+            'billing_city_id' => 'required',
+            'billing_subdistrict_name' => 'max:255',
+        ]);
+        $user = User::findOrFail($id);
+
+        $data = $request->only(
+            [
+                'profile_picture',
+                'billing_name',
+                'billing_phone',
+                'billing_email',
+                'billing_address',
+                'billing_province_id',
+                'billing_city_id',
+                // 'billing_subdistrict_id',
+                // 'billing_province_name',
+                // 'billing_city_name',
+                'billing_subdistrict_name',
+            ]
+        );
+
+        $province = Province::find($data['billing_province_id']);
+        $cityResponse = RajaongkirController::city($data['billing_province_id']);
+
+        $city = collect($cityResponse->getData()->data)->firstWhere('id', $data['billing_city_id']);
+        $data['billing_province_name'] = $province['province'];
+        $data['billing_city_name'] = $city->name;
+        $user->detail()->updateOrCreate([
+            'user_id' => $user->id,
+        ], $data);
     }
 }

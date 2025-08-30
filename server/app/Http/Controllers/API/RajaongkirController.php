@@ -40,15 +40,15 @@ class RajaongkirController extends Controller
         }
     }
 
-    public function city($provinceId)
+    public static function city($provinceId)
     {
         try {
             $path = 'https://rajaongkir.komerce.id/api/v1/destination/city/' . $provinceId;
             $responseCity = Http::withHeader('key', env('RAJAONGKIR_API_KEY'))
                 ->get($path);
-            return $this->sendResponse($responseCity->json()['data'], 'Cities retrieved successfully');
+            return parent::sendResponseStatic($responseCity->json()['data'], 'Cities retrieved successfully');
         } catch (\Throwable $th) {
-            return $this->sendError('Internal server error', [], 500);
+            return parent::sendErrorStatic('Internal server error', [], 500);
         }
     }
 }

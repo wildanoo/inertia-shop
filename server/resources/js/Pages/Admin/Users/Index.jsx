@@ -3,7 +3,6 @@ import DataTable from "@/Components/molecules/DataTable";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { formatDate } from "@/utils";
 import { Link, router } from "@inertiajs/react";
-import React from "react";
 import { HiTrash } from "react-icons/hi2";
 
 export default function Index({ users }) {
@@ -91,6 +90,12 @@ export default function Index({ users }) {
             dataIndex: "id",
             render: (value, record) => (
               <div className="flex items-center gap-2">
+                <Link
+                  href={route("dashboard.users.show", value)}
+                  className="btn btn-sm btn-outline"
+                >
+                  Detail
+                </Link>
                 <Link
                   href={route("dashboard.users.edit", value)}
                   className="btn btn-success btn-sm"
